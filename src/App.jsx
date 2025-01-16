@@ -5,12 +5,11 @@ import Home from './components/Home';
 import Users from './components/Users';
 import Provider from './components/Provider';
 import Login from './components/Login';
-
-
+import Bike from './components/Bike';
+import SingleBike from './components/SingleBike';
 function App() {
   return (
-    <>
-    <div className='dark:bg-slate-900 dark:text-white'>
+    <> <div className='dark:bg-slate-900 dark:text-white'>
 <Routes>
 <Route path="/" element={<Home />} />
                 
@@ -18,7 +17,8 @@ function App() {
          <Route path="/users" element={<Users />} />
          <Route path="/provider" element={<Provider />} />
          <Route path="/login" element={<Login />} />
-
+         <Route path='/bike' element={<Bike/>}/>
+         <Route path='/single/:id' element={<SingleBike/>}/>
 </Routes>
 </div>
     </>
