@@ -19,15 +19,11 @@ function SingleBike(){
           alert("something wrong")
       }
   }
+  
       useEffect(()=>{
           fetchsingle()
       },[])
-      const deleteBike=async()=>{
-          const response=await axios.get("http://localhost:3000/bike/"+id)
-          if(response.status===200){
-              Navigate('/')
-          }
-      }
+     
     return ( 
         <>
         <Navabar/>

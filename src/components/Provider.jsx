@@ -30,6 +30,44 @@ const Provider = () => {
         alert("something wrong")
     }
   }
+  const handleAccept = async (id)=>{
+    const response=await axios.patch("http://localhost:3000/provider/change-status",{
+      providerId:id,
+      status:"active"
+    },
+    {      headers:{
+      "Authorization" : localStorage.getItem("token")
+    }
+  }
+  )
+
+    if(response.status==200){
+        window.location.href = "/providers"
+    }
+    else{
+        alert("something wrong")
+    }
+  }
+  const handleReject = async (id)=>{
+    const response=await axios.patch("http://localhost:3000/provider/change-status",{
+      providerId:id,
+      status:"inactive"
+    },
+    {      headers:{
+      "Authorization" : localStorage.getItem("token")
+    }
+  }
+  )
+
+  
+
+    if(response.status==200){
+        window.location.href = "/providers"
+    }
+    else{
+        alert("something wrong")
+    }
+  }
  
   useEffect(()=>{
       fetchProviders()
@@ -72,7 +110,9 @@ const Provider = () => {
                <p>{us.contactNo}</p>
               </td>
               <td className="p-3 px-5 flex justify-end">
-                <button type="button" className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Save</button><button type="button" className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline" onClick={()=>handleDelete(us._id)}>Delete</button>
+                <button type="button" className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"onClick={()=>handleAccept(us._id)}>Accept</button>
+                <button type="button" className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline" onClick={()=>handleReject(us._id)}>Reject</button>
+                <button type="button" className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline" onClick={()=>handleDelete(us._id)}>Delete</button>
               </td>
             </tr>
             )
