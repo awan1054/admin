@@ -1,8 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import sahayatri from '../assets/sahayatri.webp';
 const Navabar = () => {
- 
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  useEffect(()=>{
+   
+    if(localStorage.getItem("token")){
+      setIsLoggedIn(true)
+    }else{
+      setIsLoggedIn(false)
+    }
+  },[])
+console.log(isLoggedIn)
+const logout = ()=>{
+  localStorage.removeItem("token")
+}
   return (
     <div>
   <nav className="bg-gray-800">
@@ -46,7 +58,17 @@ const Navabar = () => {
             
             <Link to='/Bookeddetails'className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Booked Users</Link>
 
-            <Link to='/login' className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</Link>
+            {
+              isLoggedIn ? (
+                <div onClick={logout}>
+                  <Link to='/login' className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Logout</Link>
+              </div>
+              ) : (
+                <div>
+                  <Link to='/login' className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</Link>
+              </div>
+              )
+            }
           </div>
         </div>
       </div>
@@ -61,7 +83,18 @@ const Navabar = () => {
       <Link to="/users" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Users</Link>
       <Link  to='/Provider'className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Provider</Link>
       <Link  to='/Bookeddetails'className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Booked Users</Link>
-      <Link to='/login' className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</Link>
+      {
+              isLoggedIn ? (
+                <div onClick={logout}>
+                  <Link to='/login' className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Logout</Link>
+              </div>
+              ) : (
+                <div>
+                  <Link to='/login' className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</Link>
+              </div>
+              )
+            }
+    
     </div>
   </div>
 </nav>
