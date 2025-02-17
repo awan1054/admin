@@ -23,8 +23,8 @@ const Provider = () => {
         "Authorization" : localStorage.getItem("token")
       }
     })
-    if(response.status==200){
-        window.location.href = "/providers"
+    if(response.status==202){
+        window.location.href = "/provider"
     }
     else{
         alert("something wrong")
@@ -59,10 +59,10 @@ const Provider = () => {
   }
   )
 
-  
+
 
     if(response.status==200){
-        window.location.href = "/providers"
+        window.location.href = "/provider"
     }
     else{
         alert("something wrong")
@@ -130,3 +130,4 @@ const Provider = () => {
 }
 
 export default Provider
+
