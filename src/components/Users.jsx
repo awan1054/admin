@@ -34,6 +34,10 @@ const Users = () => {
   useEffect(()=>{
       fetchUsers()
   },[])
+  const newUsers = user.length > 0 && user.filter((us)=>{
+    return us.role != "admin" && us.role!="provider"
+  })
+  console.log(newUsers)
   return (
  <>
  <div >
@@ -53,7 +57,7 @@ const Users = () => {
           <th />
         </tr>
         {
-          user.length > 0 && user.map((us)=>{
+          newUsers.length > 0 && newUsers.map((us)=>{
             return (
               <tr className="border-b hover:bg-orange-100 bg-gray-100">
               <td className="p-3 px-5">
